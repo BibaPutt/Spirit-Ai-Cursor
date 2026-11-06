@@ -1,0 +1,129 @@
+{
+  "panel": {
+    "title": "Spirit Settings",
+    "close": "Close"
+  },
+  "tabs": {
+    "general": "General",
+    "ai": "AI",
+    "voice": "Voice",
+    "appearance": "Appearance",
+    "actions": "Actions"
+  },
+  "general": {
+    "hotkey": "Keyboard hotkey",
+    "hotkeyHint": "Hold for 200ms anywhere to invoke Spirit",
+    "shake": "Shake-to-summon",
+    "shakeHint": "Move mouse rapidly side to side to open Spirit",
+    "suggestChips": "Suggestions show",
+    "suggestChipsHint": "When one-tap action chips appear: typing, voice, both, or never",
+    "launchAtLogin": "Launch at login",
+    "launchAtLoginHint": "Start Spirit when you log in",
+    "clearMemoryOnQuit": "Clear memory on quit",
+    "clearMemoryOnQuitHint": "Delete all memory when Spirit closes",
+    "notifications": "Notifications",
+    "notificationsHint": "Show notifications for tool actions",
+    "ghostMode": "Ghost mode",
+    "ghostModeHint": "Hide Spirit from screen capture and screen sharing, and remove the tray icon. Screen-capture exclusion works on Windows and macOS; Linux has no equivalent API.",
+    "ghostHideTaskbar": "Hide from taskbar",
+    "ghostHideTaskbarHint": "Also hide Spirit from the taskbar (Windows/Linux) and the Dock (macOS). Turn off to keep a taskbar/Dock entry.",
+    "about": "About",
+    "version": "Version",
+    "license": "All rights reserved",
+    "contact": "Contact"
+  },
+  "ai": {
+    "provider": "AI Provider",
+    "providerHint": "Choose your AI service",
+    "apiKey": "API Key",
+    "apiKeyHint": "Your provider API key",
+    "model": "Model",
+    "modelHint": "Auto-selects the best model for your provider",
+    "suggestProvider": "Chips provider",
+    "suggestProviderHint": "Separate provider for suggestion chips (optional)",
+    "autoApprove": "Auto-approve actions",
+    "autoApproveHint": "Skip approval for tool actions"
+  },
+  "voice": {
+    "sttProvider": "Speech-to-text",
+    "sttProviderHint": "Local Whisper or cloud transcription",
+    "ttsProvider": "Text-to-speech",
+    "ttsProviderHint": "Voice for reading answers aloud",
+    "rate": "Speech rate",
+    "rateHint": "How fast the voice speaks",
+    "pitch": "Voice pitch",
+    "pitchHint": "Higher or lower voice tone"
+  },
+  "appearance": {
+    "theme": "Theme",
+    "themeHint": "Dark or light mode",
+    "themeDark": "Dark",
+    "themeLight": "Light",
+    "themeSystem": "System",
+    "accentColor": "Accent color",
+    "accentColorHint": "Color used for highlights and buttons",
+    "cursor": "Cursor style",
+    "cursorHint": "Custom cursor appearance",
+    "cursorHidden": "Hidden",
+    "cursorBibata": "Bibata"
+  },
+  "actions": {
+    "autoApprove": "Auto-approve",
+    "autoApproveHint": "Skip approval for safe actions",
+    "permissions": "Permissions",
+    "permissionsHint": "Manage access to screen, clipboard, and files"
+  },
+  "workspace": {
+    "title": "Workspace",
+    "hint": "Where documents are saved"
+  },
+  "chain": {
+    "thinking": "Thinking",
+    "thinkingDots": "Thinking…",
+    "reasoning": "Reasoning",
+    "steps": "{{count}} steps",
+    "steps_one": "{{count}} step",
+    "steps_other": "{{count}} steps",
+    "running": "running…",
+    "done": "done"
+  },
+  "interrupt": {
+    "button": "Interrupt",
+    "redirectHint": "Type a prompt to stop and redirect"
+  },
+  "memory": {
+    "title": "Memory",
+    "count": "{{count}} items",
+    "count_one": "{{count}} item",
+    "count_other": "{{count}} items",
+    "manage": "Manage",
+    "search": "Search memories...",
+    "clearAll": "Clear all",
+    "confirmClearAll": "Click again to confirm",
+    "delete": "Delete",
+    "confirmDelete": "Click again to confirm",
+    "saveEdit": "Save",
+    "cancel": "Cancel",
+    "empty": "No memories yet",
+    "tags": {
+      "all": "All",
+      "app": "App",
+      "clipboard": "Clipboard",
+      "selection": "Selection",
+      "ocr": "OCR",
+      "paint": "Paint"
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "hint": "Optional capabilities added to Spirit's system prompt. Toggling applies immediately.",
+    "none": "No skills found"
+  },
+  "shortcuts": {
+    "title": "Keyboard Shortcuts",
+    "add": "Add shortcut",
+    "action": "Action",
+    "keys": "Keys",
+    "delete": "Remove"
+  }
+}

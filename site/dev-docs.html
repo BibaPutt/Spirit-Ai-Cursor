@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spirit developer documentation — architecture, internals, packaging</title>
+    <meta
+      name="description"
+      content="How Spirit works under the hood: the trigger-to-answer flow, screen reading and OCR, the input engine, AI providers and the router, tools and approvals, memory, voice, security, storage, packaging and testing — each explained in plain language and at code level."
+    />
+    <meta name="application-name" content="Spirit" />
+    <meta name="author" content="Spirit" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#08090C" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f4f2" media="(prefers-color-scheme: light)" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="canonical" href="__SITE_URL__/dev-docs.html" />
+    <link rel="alternate" hreflang="x-default" href="__SITE_URL__/dev-docs.html" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Spirit" />
+    <meta property="og:title" content="Spirit developer documentation" />
+    <meta
+      property="og:description"
+      content="Every Spirit subsystem explained twice: in plain language and at code level — capture, input engine, providers, tools, memory, voice, packaging."
+    />
+    <meta property="og:url" content="__SITE_URL__/dev-docs.html" />
+    <meta property="og:image" content="__SITE_URL__/assets/icon.png" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="Spirit app icon" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Spirit developer documentation" />
+    <meta
+      name="twitter:description"
+      content="Every Spirit subsystem explained twice: in plain language and at code level — capture, input engine, providers, tools, memory, voice, packaging."
+    />
+    <meta name="twitter:image" content="__SITE_URL__/assets/icon.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "TechArticle",
+            "@id": "__SITE_URL__/dev-docs.html#article",
+            "headline": "Spirit developer documentation",
+            "description": "How Spirit works under the hood: trigger-to-answer flow, screen reading, input engine, providers, tools, memory, voice, security, packaging and testing.",
+            "inLanguage": "en",
+            "dateModified": "2026-11-06",
+            "author": {
+              "@type": "Organization",
+              "name": "Spirit",
+              "url": "__SITE_URL__/"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Spirit",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "__SITE_URL__/assets/icon.png"
+              }
+            },
+            "mainEntityOfPage": "__SITE_URL__/dev-docs.html",
+            "about": { "@id": "__SITE_URL__/#app" }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "__SITE_URL__/dev-docs.html#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Spirit",
+                "item": "__SITE_URL__/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Developer documentation",
+                "item": "__SITE_URL__/dev-docs.html"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <main>
+        <h1>Spirit developer documentation</h1>
+        <p>
+          How Spirit works under the hood, explained twice — plain language first, code detail
+          second. Enable JavaScript to read it with the site's navigation, or read the repository
+          docs (AI_CONTEXT.md and docs/01–17) at full depth.
+        </p>
+        <h2>What Spirit is</h2>
+        <p>
+          An Electron 30 desktop app (React 18, Vite 5, TypeScript). Hold the trigger key, ask,
+          and the answer streams into an overlay beside your cursor with awareness of a small
+          screenshot crop, OCR text, the OS accessibility tree, your clipboard and the foreground
+          app. The model can call tools — click, type, launch, save — every mutating one behind an
+          approval card, and two high-impact tools (shell, system actions) always prompt.
+        </p>
+        <h2>The pipeline</h2>
+        <p>
+          Trigger state machine → per-display overlay windows → llm:query-options → provider chain
+          (OpenRouter → Anthropic → OpenAI → Gemini → local, with transient-failure retries) →
+          agentic tool loop (150 s cap) → streamed chunks → takeaway memory (local BM25), session
+          persistence, follow-up chips.
+        </p>
+        <h2>Locally enforced privacy</h2>
+        <p>
+          Keys encrypted with the OS keyring, sandboxed renderer with no outbound network, SSRF
+          guards on URL fetching, allowlisted sanitizers on AI-generated HTML, no telemetry and no
+          cloud storage — there is no Spirit server.
+        </p>
+        <h2>Packaging</h2>
+        <p>
+          Vite + vite-plugin-electron + electron-builder: NSIS for Windows, DMG/ZIP for macOS
+          (arm64 + x64), AppImage for Linux. Signing and notarization are env-gated
+          (CSC_LINK/CSC_KEY_PASSWORD, APPLE_ID/APPLE_TEAM_ID); releases publish to GitHub.
+        </p>
+      </main>
+    </noscript>
+    <script type="module" src="/src/dev-docs-main.tsx"></script>
+  </body>
+</html>

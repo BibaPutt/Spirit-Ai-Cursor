@@ -1,0 +1,33 @@
+# Spirit
+
+> Spirit is a desktop AI companion that answers questions about whatever your cursor is pointing at. Hold a key, ask, and the answer arrives in place.
+
+Spirit is a source-available Electron app under the Business Source License 1.1, free for personal, educational, and internal business use, for Windows, macOS and Linux. It combines screenshot capture, OCR, the accessibility tree, local Whisper voice input and your own model key (OpenAI, Anthropic, Google, OpenRouter or a local OpenAI-compatible endpoint) into one hold-to-ask gesture. Screen reading, OCR and transcription run locally; keys live in an encrypted local store.
+
+## Core pages
+
+- [Home](/): Product overview, feature demos, FAQ and download.
+- [Manual](/docs.html): Install, shortcuts, ghost mode, privacy and license.
+
+## Product facts
+
+- Platforms: Windows 10/11, macOS 13+, Linux (AppImage).
+- Price: free for personal, educational, and internal business use. License: BSL-1.1.
+- Bring your own model key. Keys stay in the encrypted store.
+- Screen reading, OCR and Whisper transcription run locally.
+- Answers can click, type, scroll, drag and press keys through the input driver.
+- Source: https://github.com/BibaPutt/Spirit-AI-Cursor
+
+## Common questions
+
+- What is Spirit? A desktop AI companion that reads what is under the cursor and answers beside it.
+- Does it send my screen anywhere? Only to the model you configure. Nothing is stored on Spirit's side.
+- Which models can I use? OpenAI, Anthropic, Google, OpenRouter or a local OpenAI-compatible endpoint.
+- Does it work offline? Screen reading, OCR and transcription do. Answers need a model; a local model keeps the whole loop offline.
+- What are the system requirements? Windows 10/11, macOS 13+ or a modern Linux desktop, with 4 GB RAM for the app.
+- Is it free? Yes, for personal, educational, and internal business use under BSL-1.1. You pay only for the model you choose.
+
+## Optional
+
+- [Source code](https://github.com/BibaPutt/Spirit-AI-Cursor): GitHub repository.
+- [Releases](https://github.com/BibaPutt/Spirit-AI-Cursor/releases): Download builds.

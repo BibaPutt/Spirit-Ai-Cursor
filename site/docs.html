@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spirit manual — install, shortcuts, privacy</title>
+    <meta
+      name="description"
+      content="Install Spirit, learn the hold-to-ask gesture and keyboard shortcuts, understand ghost mode, and see exactly what leaves your machine. Windows, macOS and Linux."
+    />
+    <meta name="application-name" content="Spirit" />
+    <meta name="author" content="Spirit" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#08090C" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f4f2" media="(prefers-color-scheme: light)" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="canonical" href="__SITE_URL__/docs.html" />
+    <link rel="alternate" hreflang="x-default" href="__SITE_URL__/docs.html" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Spirit" />
+    <meta property="og:title" content="Spirit manual — install, shortcuts, privacy" />
+    <meta
+      property="og:description"
+      content="Install Spirit, learn the hold-to-ask gesture, and see exactly what leaves your machine."
+    />
+    <meta property="og:url" content="__SITE_URL__/docs.html" />
+    <meta property="og:image" content="__SITE_URL__/assets/icon.png" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="Spirit app icon" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Spirit manual — install, shortcuts, privacy" />
+    <meta
+      name="twitter:description"
+      content="Install Spirit, learn the hold-to-ask gesture, and see exactly what leaves your machine."
+    />
+    <meta name="twitter:image" content="__SITE_URL__/assets/icon.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "TechArticle",
+            "@id": "__SITE_URL__/docs.html#article",
+            "headline": "Spirit manual — install, shortcuts, privacy",
+            "description": "Install Spirit, learn the hold-to-ask gesture, keyboard shortcuts, ghost mode, privacy and license.",
+            "inLanguage": "en",
+            "dateModified": "2026-11-04",
+            "author": {
+              "@type": "Organization",
+              "name": "Spirit",
+              "url": "__SITE_URL__/"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Spirit",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "__SITE_URL__/assets/icon.png"
+              }
+            },
+            "mainEntityOfPage": "__SITE_URL__/docs.html",
+            "about": { "@id": "__SITE_URL__/#app" }
+          },
+          {
+            "@type": "HowTo",
+            "@id": "__SITE_URL__/docs.html#install",
+            "name": "Install Spirit",
+            "description": "Install the Spirit desktop app, grant screen-capture permission, add a model key, and ask your first question.",
+            "totalTime": "PT2M",
+            "tool": [
+              { "@type": "HowToTool", "name": "Spirit installer" },
+              { "@type": "HowToTool", "name": "A model API key or local model" }
+            ],
+            "step": [
+              {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Download the build",
+                "text": "Grab the build for your platform from the download section, or run the project from source with git clone, npm install and npm run build."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Grant screen-capture permission",
+                "text": "On macOS, allow screen capture the first time Spirit reads the cursor area. Windows and Linux use the native capture path."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Add a model key",
+                "text": "Open Settings and add an OpenAI, Anthropic, Google, OpenRouter or local OpenAI-compatible endpoint. Keys stay in the encrypted store."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Ask your first question",
+                "text": "Hold Alt + Space anywhere, type or speak a question about what is under the cursor, then release."
+              }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "__SITE_URL__/docs.html#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Spirit",
+                "item": "__SITE_URL__/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Manual",
+                "item": "__SITE_URL__/docs.html"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <main>
+        <h1>Spirit manual</h1>
+        <p>
+          Everything Spirit does, in one page. Install it, learn the gesture, and know exactly what
+          leaves your machine.
+        </p>
+        <h2>Install</h2>
+        <p>
+          Grab the build for your platform, or run it from source. Spirit needs a screen-capture
+          permission on macOS the first time it reads the cursor area.
+        </p>
+        <pre>git clone https://github.com/BibaPutt/Spirit-AI-Cursor.git
+cd Spirit-AI-Cursor
+npm install
+npm run build</pre>
+        <h2>Use it</h2>
+        <p>
+          Hold the hotkey. The capsule appears next to the cursor and starts listening. Type or
+          speak your question, then release. Spirit captures the region around the pointer, reads
+          text and UI elements, and sends only what is needed to the model you configured.
+        </p>
+        <h2>Shortcuts</h2>
+        <ul>
+          <li><kbd>Alt + Space</kbd> — open the prompt at the cursor</li>
+          <li><kbd>Shift + Alt + Space</kbd> — open with voice recording armed</li>
+          <li><kbd>Esc</kbd> — close the capsule or cancel a request</li>
+          <li><kbd>Ctrl + Enter</kbd> — send without releasing the hotkey</li>
+        </ul>
+        <h2>Privacy</h2>
+        <p>
+          API keys live in an encrypted store. Session history and long-term memory stay in local
+          app data. Nothing is uploaded except the capture and prompt you send to your chosen model
+          provider.
+        </p>
+        <h2>License</h2>
+        <p>
+          Business Source License 1.1 (BSL-1.1). Free for personal, educational, and internal
+          business use; you may read and modify the source. Commercial redistribution,
+          white-labeling, and hosted/SaaS use require a separate written license. Converts to
+          Apache 2.0 on 2030-11-01. The Bibata cursor artwork is MIT-licensed.
+        </p>
+      </main>
+    </noscript>
+    <script type="module" src="/src/docs-main.tsx"></script>
+  </body>
+</html>

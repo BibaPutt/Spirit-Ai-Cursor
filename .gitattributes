@@ -1,0 +1,35 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source code — always LF in repo
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+
+# Windows scripts — CRLF
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary — do not diff or normalize
+*.cur binary
+*.png binary
+*.ico binary
+*.icns binary
+*.jpg binary
+*.gif binary
+*.mp4 binary
+*.webm binary
+*.node binary
+*.dll binary
+*.dylib binary
+*.so binary

@@ -1,0 +1,108 @@
+:root {
+  --font-display: 'Syne Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Martian Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --t-xs: 0.8125rem;
+  --t-sm: 0.875rem;
+  --t-body: 1.0625rem;
+  --t-md: 1.4375rem;
+  --t-lg: 1.875rem;
+
+  --t-display: clamp(2.75rem, 9vw, 8.5rem);
+  --t-display-sm: clamp(2rem, 5.5vw, 4.25rem);
+  --t-h2: clamp(1.9rem, 3.8vw, 3.25rem);
+  --t-h3: clamp(1.3rem, 2vw, 1.6rem);
+
+  --r-xs: 8px;
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 30px;
+  --r-pill: 999px;
+
+  --wrap: 1200px;
+  --gutter: clamp(20px, 4.6vw, 56px);
+  --nav-h: 80px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur: 320ms;
+
+  --sec-y: clamp(76px, 11vw, 148px);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --nav-h: 68px;
+  }
+}
+
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --ground: #08090b;
+  --surface: #0e1014;
+  --raised: #171a21;
+  --shot: #0b0d12;
+  --code-bg: #10131a;
+
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.22);
+
+  --ink: #eef0f4;
+  --mute: #a6a8b0;
+  --faint: #7f828c;
+
+  --accent: #4c9bff;
+  --accent-ink: #8cc2ff;
+  --accent-soft: rgba(76, 155, 255, 0.15);
+  --accent-line: rgba(76, 155, 255, 0.42);
+
+  --glass: rgba(18, 20, 27, 0.46);
+  --glass-line: rgba(255, 255, 255, 0.12);
+  --glass-hi: rgba(255, 255, 255, 0.22);
+
+  --nav-bg: rgba(14, 16, 20, 0.72);
+  --nav-line: rgba(255, 255, 255, 0.1);
+
+  --pill-bg: rgb(38 38 38 / 0.63);
+  --pill-line: rgb(255 255 255 / 0.16);
+
+  --dither-ink: rgba(255, 255, 255, 0.16);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+
+  --ground: #f5f4f2;
+  --surface: #f6f6f4;
+  --raised: #e8e8e5;
+  --shot: #efefec;
+  --code-bg: #fafaf9;
+
+  --line: rgba(22, 21, 18, 0.1);
+  --line-strong: rgba(22, 21, 18, 0.24);
+
+  --ink: #151513;
+  --mute: #5c5a54;
+  --faint: #7d7a73;
+
+  --accent: #1f5fe0;
+  --accent-ink: #1a4bb5;
+  --accent-soft: rgba(31, 95, 224, 0.1);
+  --accent-line: rgba(31, 95, 224, 0.34);
+
+  --glass: rgba(255, 255, 255, 0.55);
+  --glass-line: rgba(20, 22, 27, 0.08);
+  --glass-hi: rgba(255, 255, 255, 0.95);
+
+  --nav-bg: rgba(246, 246, 244, 0.74);
+  --nav-line: rgba(22, 21, 18, 0.1);
+
+  --pill-bg: rgb(245 245 245 / 0.63);
+  --pill-line: rgb(255 255 255 / 0.5);
+
+  --dither-ink: rgba(20, 22, 27, 0.16);
+}

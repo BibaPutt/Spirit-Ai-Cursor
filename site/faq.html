@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spirit — Frequently Asked Questions</title>
+    <meta name="description" content="Does Spirit send my screen anywhere? Which models can it use? Does it work offline? System requirements, hotkeys, pricing — the common questions about Spirit, answered." />
+    <meta name="application-name" content="Spirit" />
+    <meta name="author" content="Spirit" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#08090C" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f4f2" media="(prefers-color-scheme: light)" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="canonical" href="__SITE_URL__/faq.html" />
+    <link rel="alternate" hreflang="x-default" href="__SITE_URL__/faq.html" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Spirit" />
+    <meta property="og:title" content="Spirit — Frequently Asked Questions" />
+    <meta property="og:description" content="The common questions about Spirit answered: screen data, models, offline use, requirements, hotkeys and pricing." />
+    <meta property="og:url" content="__SITE_URL__/faq.html" />
+    <meta property="og:image" content="__SITE_URL__/assets/icon.png" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="Spirit app icon" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Spirit — Frequently Asked Questions" />
+    <meta name="twitter:description" content="The common questions about Spirit answered: screen data, models, offline use, requirements, hotkeys and pricing." />
+    <meta name="twitter:image" content="__SITE_URL__/assets/icon.png" />
+
+    <script type="application/ld+json">
+      {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": "__SITE_URL__/faq.html#faq",
+      "headline": "Spirit — Frequently Asked Questions",
+      "author": {
+            "@type": "Organization",
+            "name": "Spirit",
+            "url": "__SITE_URL__/"
+      },
+      "publisher": {
+            "@type": "Organization",
+            "name": "Spirit",
+            "logo": {
+                  "@type": "ImageObject",
+                  "url": "__SITE_URL__/assets/icon.png"
+            }
+      },
+      "mainEntityOfPage": "__SITE_URL__/faq.html",
+      "about": {
+            "@id": "__SITE_URL__/#app"
+      },
+      "inLanguage": "en",
+      "dateModified": "2026-11-06",
+      "mainEntity": [
+            {
+                  "@type": "Question",
+                  "name": "Does Spirit send my screen anywhere?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Only to the model you configure. Screenshots and OCR text go with the request; nothing is stored on our side. With a local model, the whole loop stays on the machine."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Which models can I use?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "OpenAI, Anthropic, Google, OpenRouter and local runtimes behind an OpenAI-compatible endpoint. Keys stay in the encrypted store."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Does it work offline?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Screen reading, OCR and voice transcription run locally. Answers need a model; a local model keeps the whole loop offline."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "What are the system requirements?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Windows 10 or 11, macOS 13 or newer, or a modern Linux desktop. Four gigabytes of RAM for the app, more for a local model."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How do I change the hotkey?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Settings, then Shortcuts. Hold, toggle and voice keys are separate, and conflicts are reported before a change is saved."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Is it free?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The app is free for personal, educational, and internal business use under the Business Source License 1.1. You may read and modify the source. Hosting it as a service, white-labeling it, or redistributing it commercially requires a separate written license. The license converts to Apache 2.0 on 2030-11-01."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Can Spirit click the wrong thing?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "It can. The model draws its targets from a screenshot and the accessibility tree, and either can mis-read a busy screen. That is why every click, keypress and paste shows an approval card first — read it, then allow. Denying is always one press and nothing breaks."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Does it read my passwords?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Spirit only reads what is under your cursor when you trigger it. If you hold the hotkey while a password field is in the capture, that text goes to your model provider like any other context — so don't ask questions with credentials on screen. Spirit's own keys stay encrypted in your OS keychain."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "What does a question cost?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Whatever your provider charges for the tokens — typically a fraction of a cent on small models. The OpenRouter models Spirit ships with are free. Use a local model and it costs nothing but electricity."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Windows shows a SmartScreen warning when I install",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "That is because the installer is not code-signed yet — SmartScreen flags any unsigned download. Click More info, then Run anyway, or grab the build from the official GitHub releases. Signing is wired up and switches on as soon as a certificate is configured."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Does it work over games?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "In windowed or borderless mode, usually yes. Exclusive fullscreen games can block overlays entirely, and some anti-cheat systems dislike input automation — use it for browsing, documents and dev tools, not ranked matches."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "How do I wipe everything Spirit knows?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Open the Memory panel to delete single takeaways, or delete the workspace folder and config.json in app data to erase sessions, memory and settings completely. Uninstalling never silently wipes your files."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Can I use my company's OpenAI key?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes — the key stays in your machine's keychain and requests go straight from your machine to the provider. Do check your company policy on what may be sent to that provider, since your prompts and screen context travel with the question."
+                  }
+            },
+            {
+                  "@type": "Question",
+                  "name": "Why is the answer sometimes wrong?",
+                  "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Because models are statistical, not factual databases. Screen context keeps answers grounded in what is actually on your display, but for anything that matters — numbers, names, commands that delete things — treat the answer as a draft and verify."
+                  }
+            }
+      ]
+}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <main>
+
+        <h2>Does Spirit send my screen anywhere?</h2>
+        <p>Only to the model you configure. Screenshots and OCR text go with the request; nothing is stored on our side. With a local model, the whole loop stays on the machine.</p>
+
+        <h2>Which models can I use?</h2>
+        <p>OpenAI, Anthropic, Google, OpenRouter and local runtimes behind an OpenAI-compatible endpoint. Keys stay in the encrypted store.</p>
+
+        <h2>Does it work offline?</h2>
+        <p>Screen reading, OCR and voice transcription run locally. Answers need a model; a local model keeps the whole loop offline.</p>
+
+        <h2>What are the system requirements?</h2>
+        <p>Windows 10 or 11, macOS 13 or newer, or a modern Linux desktop. Four gigabytes of RAM for the app, more for a local model.</p>
+
+        <h2>How do I change the hotkey?</h2>
+        <p>Settings, then Shortcuts. Hold, toggle and voice keys are separate, and conflicts are reported before a change is saved.</p>
+
+        <h2>Is it free?</h2>
+        <p>The app is free for personal, educational, and internal business use under the Business Source License 1.1. You may read and modify the source. Hosting it as a service, white-labeling it, or redistributing it commercially requires a separate written license. The license converts to Apache 2.0 on 2030-11-01.</p>
+
+        <h2>Can Spirit click the wrong thing?</h2>
+        <p>It can. The model draws its targets from a screenshot and the accessibility tree, and either can mis-read a busy screen. That is why every click, keypress and paste shows an approval card first — read it, then allow. Denying is always one press and nothing breaks.</p>
+
+        <h2>Does it read my passwords?</h2>
+        <p>Spirit only reads what is under your cursor when you trigger it. If you hold the hotkey while a password field is in the capture, that text goes to your model provider like any other context — so don't ask questions with credentials on screen. Spirit's own keys stay encrypted in your OS keychain.</p>
+
+        <h2>What does a question cost?</h2>
+        <p>Whatever your provider charges for the tokens — typically a fraction of a cent on small models. The OpenRouter models Spirit ships with are free. Use a local model and it costs nothing but electricity.</p>
+
+        <h2>Windows shows a SmartScreen warning when I install</h2>
+        <p>That is because the installer is not code-signed yet — SmartScreen flags any unsigned download. Click More info, then Run anyway, or grab the build from the official GitHub releases. Signing is wired up and switches on as soon as a certificate is configured.</p>
+
+        <h2>Does it work over games?</h2>
+        <p>In windowed or borderless mode, usually yes. Exclusive fullscreen games can block overlays entirely, and some anti-cheat systems dislike input automation — use it for browsing, documents and dev tools, not ranked matches.</p>
+
+        <h2>How do I wipe everything Spirit knows?</h2>
+        <p>Open the Memory panel to delete single takeaways, or delete the workspace folder and config.json in app data to erase sessions, memory and settings completely. Uninstalling never silently wipes your files.</p>
+
+        <h2>Can I use my company's OpenAI key?</h2>
+        <p>Yes — the key stays in your machine's keychain and requests go straight from your machine to the provider. Do check your company policy on what may be sent to that provider, since your prompts and screen context travel with the question.</p>
+
+        <h2>Why is the answer sometimes wrong?</h2>
+        <p>Because models are statistical, not factual databases. Screen context keeps answers grounded in what is actually on your display, but for anything that matters — numbers, names, commands that delete things — treat the answer as a draft and verify.</p>
+            </main>
+    </noscript>
+    <script type="module" src="/src/faq-main.tsx"></script>
+  </body>
+</html>

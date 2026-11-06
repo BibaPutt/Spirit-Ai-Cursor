@@ -1,0 +1,179 @@
+# electron-builder.yml
+# Spirit packaging config.
+# Docs: https://www.electron.build/configuration/configuration
+#
+# Sign / notarize are env-gated. The release-build.sh script can also override
+# via --no-sign / --no-notarize. Required env vars for a signed + notarized
+# macOS build:
+#   APPLE_ID                      Apple ID email (e.g. dev@example.com)
+#   APPLE_TEAM_ID                 10-char team id (e.g. YOUR_TEAM_ID)
+#   APPLE_APP_SPECIFIC_PASSWORD   app-specific password from appleid.apple.com
+#   CSC_LINK                      path or base64 of the Developer ID p12
+#   CSC_KEY_PASSWORD              p12 password
+# If any of the Apple env vars are missing, electron-builder still signs (if
+# CSC_LINK is present) but skips notarization. If CSC_LINK is also missing
+# the build runs unsigned. That is the right behaviour for fast local dev
+# iterations: re-running unsigned should never burn an Apple notarization
+# slot. See https://www.electron.build/configuration/mac
+
+appId: app.spirit.desktop
+productName: Spirit
+
+# Release channel: `electron-builder --publish always`
+# from a tagged build uploads installers + latest.yml to the GitHub releases
+# the website's download links point at. Signing stays env-gated (CSC_LINK /
+# CSC_KEY_PASSWORD) — never commit a cert.pfx or password into the repo.
+publish:
+  - provider: github
+    owner: BibaPutt
+    repo: Spirit-Ai-Cursor
+
+compression: normal
+
+directories:
+  output: release
+  buildResources: build
+
+# Renderer is packed from vite's dist/. Electron main + preload come from
+# dist-electron/ (see vite.config.ts). Only the runtime-required native
+# modules are kept under node_modules to stay small; sharp + uiohook-napi
+# must be `asarUnpack`ed because they include compiled .node addons.
+files:
+  - dist/**/*
+  - dist-electron/**/*
+  - package.json
+  - LICENSE
+  # Legal documents — the in-app Legal window (electron/windows/legal.ts)
+  # reads these from the asar via app.getAppPath(), so they must ship.
+  - TERMS.md
+  - PRIVACY.md
+  - CREDITS.md
+  # Third-party attribution (Bibata cursor artwork, MIT).
+  - THIRD-PARTY-NOTICES.md
+  - cursors/LICENSE
+  # Local STT sidecar (python). Staged to userData at runtime so the child
+  # python process never has to read inside the asar archive.
+  - "electron/voice/**/*"
+  - "!node_modules/**/*"
+  - "node_modules/uiohook-napi/**/*"
+  - "node_modules/node-gyp-build/**/*"
+  - "node_modules/sharp/**/*"
+  - "node_modules/@img/**/*"
+  - "node_modules/electron-store/**/*"
+  - "!**/*.map"
+  - "!**/*.bak"
+  - "!**/*-backup"
+
+asar: true
+asarUnpack:
+  - "node_modules/uiohook-napi/**/*"
+  - "node_modules/node-gyp-build/**/*"
+  - "node_modules/sharp/**/*"
+  - "node_modules/@img/**/*"
+
+# ── macOS ─────────────────────────────────────────────────────────────────
+mac:
+  category: public.app-category.productivity
+  artifactName: "Spirit-${version}-${arch}.${ext}"
+  target:
+    - target: dmg
+      arch: [arm64, x64]
+    - target: zip
+      arch: [arm64, x64]
+  icon: assets/icon.png
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  # Use the project's Developer ID Application identity. The full identity
+  # string is what `security find-identity -v -p codesigning` prints.
+  identity: "${env.CSC_IDENTITY}"
+  # Notarization is opt-in via env. When APPLE_ID and
+  # APPLE_APP_SPECIFIC_PASSWORD are present electron-builder uploads the
+  # signed app to Apple for notarization and staples the ticket back. When
+  # they are missing notarization is silently skipped. The Apple team id is
+  # picked up from APPLE_TEAM_ID. Setting `notarize: true` here unconditionally
+  # would error out without the env vars; the conditional is handled by
+  # electron-builder >=24 when the legacy `notarize: false` is set: signed
+  # build succeeds, no notarization attempt is made.
+  notarize: false
+  extendInfo:
+    NSHumanReadableCopyright: "Copyright © 2026 Arshdeep Singh (Bibaputt). No telemetry, no analytics, no cloud."
+    CFBundleShortVersionString: "2.0.0-alpha.0"
+    CFBundleVersion: "2.0.0-alpha.0"
+    # Dock-hidden accessory app. The tray icon is the only visible affordance.
+    LSUIElement: true
+    NSScreenCaptureUsageDescription: "Spirit captures a small region around your cursor when you trigger AI mode. The image is sent only to the AI provider you configured."
+    NSAccessibilityUsageDescription: "Spirit needs Accessibility access to detect when you hold the trigger key from anywhere on your system."
+    NSMicrophoneUsageDescription: "Spirit uses the microphone for voice input. Recordings are sent to your configured AI provider for transcription and are not stored locally."
+    NSAppleEventsUsageDescription: "Spirit uses Apple Events to coordinate the system tray menu."
+    NSCameraUsageDescription: "Spirit does not use the camera."
+
+# ── Windows ───────────────────────────────────────────────────────────────
+win:
+  artifactName: "Spirit-Setup-${version}.${ext}"
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: assets/icon.ico
+  # Code signing is opt-in via CSC_LINK / CSC_KEY_PASSWORD in the environment.
+  # Without those, electron-builder produces an unsigned NSIS installer.
+  # Vendored cua-driver input daemon (Phase 3b). Staged outside the ASAR so the
+  # child process can exec it directly; the engine falls back to native input
+  # when the binary is absent (non-Windows or unpackaged dev runs).
+  extraResources:
+    - from: resources/bin
+      to: bin
+      filter: ["cua-driver.exe"]
+    # Bundled skills (Phase 5): markdown files loaded at runtime by
+    # electron/llm/skills.ts from `<resources>/skills`.
+    - from: resources/skills
+      to: skills
+      filter: ["*.md"]
+    # OmniParser visual-grounding sidecar: always shipped so users only need to
+    # point SPIRIT_OMNIPARSER_DIR at an OmniParser checkout (model weights stay
+    # out of the repo). Harmless when grounding is never enabled.
+    - from: scripts
+      to: scripts
+      filter: ["omniparser_sidecar.py"]
+
+nsis:
+  oneClick: true
+  perMachine: false
+  allowToChangeInstallationDirectory: false
+  installerIcon: assets/icon.ico
+  uninstallerIcon: assets/icon.ico
+  installerHeaderIcon: assets/icon.ico
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Spirit
+  uninstallDisplayName: Spirit
+  # Group the shortcut under a Start Menu folder (SideQuestai pattern).
+  menuCategory: Spirit
+  # Keep workspace data (sessions, memory) and settings on uninstall — the
+  # uninstaller checkbox lets the user opt out explicitly.
+  deleteAppDataOnUninstall: false
+
+# ── Linux ─────────────────────────────────────────────────────────────────
+linux:
+  artifactName: "Spirit-${version}-${arch}.${ext}"
+  target:
+    - target: AppImage
+      arch: [x64]
+  icon: assets/icon.png
+  category: Utility
+  synopsis: "AI cursor companion"
+  description: "AI-aware cursor companion. Hold a key, ask a question, get an answer about whatever your cursor is pointing at."
+  desktop:
+    Name: Spirit
+    Comment: AI cursor companion
+    Categories: Utility;Development;
+
+dmg:
+  contents:
+    - x: 130
+      y: 220
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications

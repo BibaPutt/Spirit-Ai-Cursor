@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Content-Security-Policy:
+      The meta tag below is the DEV policy. It is permissive on purpose so the
+      Vite dev server (HMR over ws://localhost, eval in module shim, etc.)
+      works. The production CSP is much stricter and is injected by the
+      transformIndexHtml hook in vite.config.ts at build time. See
+      docs/AUDIT_v1.0.0_round2.md for the prod policy and the provider whitelist.
+      Renderer never makes outbound calls in either mode (all network goes
+      through main), so connect-src is the strictest dimension.
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https: ws://localhost:* wss://localhost:* http://localhost:*; font-src 'self' data:; media-src 'self' blob: data:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'" />
+    <title>Spirit</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/main.tsx"></script>
+  </body>
+</html>

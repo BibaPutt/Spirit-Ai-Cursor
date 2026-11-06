@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spirit — ask your cursor</title>
+    <meta
+      name="description"
+      content="Spirit is a desktop AI companion. Hold a key, ask about whatever your cursor is pointing at, and the answer arrives in place. Windows, macOS and Linux. Free for personal use under BSL-1.1."
+    />
+    <meta name="application-name" content="Spirit" />
+    <meta name="author" content="Spirit" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#08090C" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f4f2" media="(prefers-color-scheme: light)" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="canonical" href="__SITE_URL__/" />
+    <link rel="alternate" hreflang="x-default" href="__SITE_URL__/" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Spirit" />
+    <meta property="og:title" content="Spirit — ask your cursor" />
+    <meta
+      property="og:description"
+      content="Hold a key, ask about whatever your cursor points at, and the answer arrives at the cursor."
+    />
+    <meta property="og:url" content="__SITE_URL__/" />
+    <meta property="og:image" content="__SITE_URL__/assets/icon.png" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="Spirit app icon" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Spirit — ask your cursor" />
+    <meta
+      name="twitter:description"
+      content="A desktop AI companion that answers where you are looking. Hold a key, ask, read."
+    />
+    <meta name="twitter:image" content="__SITE_URL__/assets/icon.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "__SITE_URL__/#organization",
+            "name": "Spirit",
+            "url": "__SITE_URL__/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "__SITE_URL__/assets/icon.png",
+              "width": 1024,
+              "height": 1024
+            },
+            "sameAs": ["https://github.com/BibaPutt/Spirit-AI-Cursor"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "__SITE_URL__/#website",
+            "name": "Spirit",
+            "url": "__SITE_URL__/",
+            "description": "A desktop AI companion that answers questions about whatever your cursor is pointing at.",
+            "publisher": { "@id": "__SITE_URL__/#organization" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "__SITE_URL__/#app",
+            "name": "Spirit",
+            "applicationCategory": "DeveloperApplication",
+            "applicationSubCategory": "AI assistant",
+            "operatingSystem": "Windows 10, Windows 11, macOS 13+, Linux",
+            "description": "Hold a hotkey, ask about whatever is on screen, and the answer arrives at the cursor. Spirit combines screenshots, OCR, the accessibility tree, voice input and your own model key.",
+            "url": "__SITE_URL__/",
+            "image": "__SITE_URL__/assets/icon.png",
+            "downloadUrl": "__SITE_URL__/docs.html#install",
+            "softwareVersion": "1.2.0",
+            "license": "https://spdx.org/licenses/BUSL-1.1.html",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "featureList": [
+              "Reads the screen under the cursor with OCR and the accessibility tree",
+              "Answers in place beside the cursor",
+              "Clicks, types, scrolls and presses keys through an input driver",
+              "Local voice transcription with Whisper",
+              "Bring your own OpenAI, Anthropic, Google, OpenRouter or local model key",
+              "Local-first memory and encrypted key storage"
+            ],
+            "sameAs": ["https://github.com/BibaPutt/Spirit-AI-Cursor"]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "__SITE_URL__/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Does Spirit send my screen anywhere?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Only to the model you configure. Screenshots and OCR text go with the request; nothing is stored on Spirit's side. With a local model, the whole loop stays on the machine."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which models can I use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "OpenAI, Anthropic, Google, OpenRouter and local runtimes behind an OpenAI-compatible endpoint. Keys stay in the encrypted store."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does it work offline?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Screen reading, OCR and voice transcription run locally. Answers need a model; a local model keeps the whole loop offline."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are the system requirements?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Windows 10 or 11, macOS 13 or newer, or a modern Linux desktop. Four gigabytes of RAM for the app, more for a local model."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I change the hotkey?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Open Settings, then Shortcuts. Hold, toggle and voice keys are separate, and conflicts are reported before a change is saved."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is it free?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The app is free for personal, educational, and internal business use under the Business Source License 1.1. You pay only for the model you choose, and nothing at all if it runs locally."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <main>
+        <h1>Spirit — ask your cursor</h1>
+        <p>
+          Spirit is a desktop AI companion for Windows, macOS and Linux. Hold a key, ask about
+          whatever is on screen, and the answer arrives in place. No tab switching, no copying
+          context.
+        </p>
+        <h2>What it does</h2>
+        <ul>
+          <li>Reads the screen under the cursor with OCR and the accessibility tree.</li>
+          <li>Answers beside the cursor instead of in a separate chat window.</li>
+          <li>Clicks, types, scrolls and presses keys through the same input driver.</li>
+          <li>Transcribes voice locally with Whisper.</li>
+          <li>Works with OpenAI, Anthropic, Google, OpenRouter or a local model key.</li>
+          <li>Keeps keys and memory on disk, under your control.</li>
+        </ul>
+        <h2>Install</h2>
+        <ol>
+          <li>Download the build for your platform.</li>
+          <li>Open Spirit and grant screen-capture permission if your OS asks.</li>
+          <li>Add your model key in Settings.</li>
+          <li>Hold <kbd>Alt + Space</kbd>, ask, and read.</li>
+        </ol>
+        <h2>Common questions</h2>
+        <dl>
+          <dt>Does Spirit send my screen anywhere?</dt>
+          <dd>Only to the model you configure. A local model keeps the whole loop on the machine.</dd>
+          <dt>Is it free?</dt>
+          <dd>Yes, for personal, educational, and internal business use under the Business Source License 1.1; you pay only for the model you choose.</dd>
+          <dt>Which platforms are supported?</dt>
+          <dd>Windows 10/11, macOS 13+ and modern Linux desktops.</dd>
+        </dl>
+        <p>
+          <a href="/docs.html">Read the manual</a> ·
+          <a href="https://github.com/BibaPutt/Spirit-AI-Cursor">Source on GitHub</a>
+        </p>
+      </main>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
