@@ -1,0 +1,7 @@
+# Cloudflare Pages — static landing site
+name = "spirit-ai-cursor"
+compatibility_date = "2026-11-01"
+pages_build_output_dir = "website"
+
+[vars]
+SITE_URL = "https://spirit-ai-cursor.pages.dev"
