@@ -1,7 +1,8 @@
 # Cloudflare Pages — static landing site
-name = "spirit-ai-cursor"
+name = "spiritcursor"
 compatibility_date = "2026-11-01"
 pages_build_output_dir = "website"
 
+# Note: Pages Git builds read SITE_URL from the dashboard env var, not here.
 [vars]
-SITE_URL = "https://spirit-ai-cursor.pages.dev"
+SITE_URL = "https://spiritcursor.pages.dev"
