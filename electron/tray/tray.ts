@@ -5,13 +5,23 @@ import { showAboutWindow } from '../windows/about';
 import { showLegalWindow, type LegalSection } from '../windows/legal';
 
 let tray: Tray | null = null;
+let creating: Promise<void> | null = null;
 
 export async function createTray(): Promise<void> {
   if (tray) return;
-  const icon = await getTrayIcon();
-  tray = new Tray(icon);
-  tray.setToolTip('Spirit');
-  rebuildMenu();
+  if (creating) return creating;
+  creating = (async () => {
+    const icon = await getTrayIcon();
+    if (tray) return;
+    tray = new Tray(icon);
+    tray.setToolTip('Spirit');
+    rebuildMenu();
+  })();
+  try {
+    await creating;
+  } finally {
+    creating = null;
+  }
 }
 
 export function rebuildMenu(): void {

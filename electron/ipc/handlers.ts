@@ -4,7 +4,7 @@ import { readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import { onBeforeQuit } from '../lifecycle';
 import { CHANNELS } from './channels';
-import { getAllOverlays, getOverlayEntries, getOverlayForDisplay, isOverlayInteractive, restoreOverlaysAfterWake, setOverlayInteractive, setAllOverlaysAlwaysOnTop, setContentProtectionEnabled, setOverlaysSkipTaskbar } from '../windows/overlay';
+import { getAllOverlays, getOverlayEntries, getOverlayForDisplay, isOverlayInteractive, restoreOverlaysAfterWake, setOverlayInteractive, setAllOverlaysAlwaysOnTop } from '../windows/overlay';
 import { lastAIActivityAt, noteAIActivity } from '../llm/providers/round-retry';
 import { getPermissions, openSystemSettings, resetScreenRecordingCache } from '../permissions';
 import { endAIMode, getAIModeState, setActiveBoxBounds, setCaptureMode, startAIModeManually } from '../input/trigger';
@@ -14,8 +14,6 @@ import {
   getChipsChainFingerprint,
   getDecryptedChipsProviderKey,
   getDecryptedProviderKey,
-  getGhostHideTaskbar,
-  getGhostMode,
   getLocalAiConfig,
   getPermissionRules,
   getProvidersHealth,
@@ -1616,16 +1614,8 @@ export function registerIpcHandlers(): void {
       }
     }
     setSettings(patch);
-    if (typeof patch.ghostMode === 'boolean' || typeof patch.ghostHideTaskbar === 'boolean') {
-      const ghost = getGhostMode();
-      const hideTaskbar = getGhostHideTaskbar();
-      setContentProtectionEnabled(ghost);
-      setOverlaysSkipTaskbar(ghost && hideTaskbar);
-      if (process.platform === 'darwin' && app.dock) {
-        if (ghost && hideTaskbar) app.dock.hide();
-        else app.dock.show();
-      }
-      if (typeof patch.ghostMode === 'boolean') app.emit('spirit:ghost-mode', ghost);
+    if (typeof patch.ghostMode === 'boolean' || typeof patch.hideTrayIcon === 'boolean') {
+      app.emit('spirit:stealth-settings');
     }
     // Broadcast a health-changed event so the ProviderHealthBanner can
     // refresh immediately instead of waiting for its 30s poll. Without

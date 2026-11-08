@@ -448,7 +448,7 @@ export function SettingsPanel({ initial, onClose, onSaved, openTab }: Props) {
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [clearMemoryOnQuit, setClearMemoryOnQuit] = useState(false);
   const [ghostMode, setGhostMode] = useState(true);
-  const [ghostHideTaskbar, setGhostHideTaskbar] = useState(true);
+  const [hideTrayIcon, setHideTrayIcon] = useState(false);
   const [memorySaveEnabled, setMemorySaveEnabled] = useState(false);
   const [contextMemoryEnabled, setContextMemoryEnabled] = useState(false);
   const [maxContextTokens, setMaxContextTokens] = useState(80000);
@@ -503,7 +503,7 @@ export function SettingsPanel({ initial, onClose, onSaved, openTab }: Props) {
     setNotificationsEnabled(initial.notificationsEnabled);
     setClearMemoryOnQuit(initial.clearMemoryOnQuit);
     setGhostMode(initial.ghostMode !== false);
-    setGhostHideTaskbar(initial.ghostHideTaskbar !== false);
+    setHideTrayIcon(initial.hideTrayIcon === true);
     setMemorySaveEnabled(initial.memorySaveEnabled);
     setContextMemoryEnabled(initial.contextMemoryEnabled);
     setMaxContextTokens(initial.maxContextTokens);
@@ -524,7 +524,7 @@ export function SettingsPanel({ initial, onClose, onSaved, openTab }: Props) {
     savedSerial.current = JSON.stringify({
       triggerHotkey, mouseWiggleEnabled, wiggleSensitivity, chipVisibility, chipsSource, customChips, themePreference,
       sttEngine, voiceLanguage, sttInitialPrompt, sttWordOverrides, autoApproveTools, notificationsEnabled,
-      clearMemoryOnQuit, ghostMode, ghostHideTaskbar,
+      clearMemoryOnQuit, ghostMode, hideTrayIcon,
       memorySaveEnabled, contextMemoryEnabled, maxContextTokens, autoContext, annotFinalPass,
       audioMode, dismissOnDoubleClick, webSearch, workspace, userProfile, personalizePrompts,
       providerEnabled,
@@ -589,7 +589,7 @@ export function SettingsPanel({ initial, onClose, onSaved, openTab }: Props) {
     () => JSON.stringify({
       triggerHotkey, mouseWiggleEnabled, wiggleSensitivity, chipVisibility, chipsSource, customChips, themePreference,
       sttEngine, voiceLanguage, sttInitialPrompt, sttWordOverrides, autoApproveTools, notificationsEnabled,
-      clearMemoryOnQuit, ghostMode, ghostHideTaskbar,
+      clearMemoryOnQuit, ghostMode, hideTrayIcon,
       memorySaveEnabled, contextMemoryEnabled, maxContextTokens, autoContext, annotFinalPass,
       audioMode, dismissOnDoubleClick, webSearch, workspace, userProfile, personalizePrompts,
       providerEnabled,
@@ -598,7 +598,7 @@ export function SettingsPanel({ initial, onClose, onSaved, openTab }: Props) {
     }),
     [triggerHotkey, mouseWiggleEnabled, wiggleSensitivity, chipVisibility, chipsSource, customChips, themePreference,
       sttEngine, voiceLanguage, sttInitialPrompt, sttWordOverrides, autoApproveTools, notificationsEnabled,
-      clearMemoryOnQuit, ghostMode, ghostHideTaskbar, memorySaveEnabled, contextMemoryEnabled, maxContextTokens, autoContext, annotFinalPass,
+      clearMemoryOnQuit, ghostMode, hideTrayIcon, memorySaveEnabled, contextMemoryEnabled, maxContextTokens, autoContext, annotFinalPass,
       audioMode, dismissOnDoubleClick, webSearch, workspace, userProfile, personalizePrompts,
       providerEnabled, providersLocalAi, providersOpencode],
   );
@@ -988,7 +988,7 @@ export function SettingsPanel({ initial, onClose, onSaved, openTab }: Props) {
       notificationsEnabled,
       clearMemoryOnQuit,
       ghostMode,
-      ghostHideTaskbar,
+      hideTrayIcon,
       memorySaveEnabled,
       contextMemoryEnabled,
       maxContextTokens,
@@ -1048,7 +1048,7 @@ export function SettingsPanel({ initial, onClose, onSaved, openTab }: Props) {
     providersOpencode, providersLocalAi, providerEnabled, providerKeys,
     triggerHotkey, mouseWiggleEnabled, wiggleSensitivity, chipVisibility, chipsSource, customChips, themePreference,
     sttEngine, voiceLanguage, autoApproveTools, notificationsEnabled,
-    clearMemoryOnQuit, ghostMode, ghostHideTaskbar, memorySaveEnabled, contextMemoryEnabled, maxContextTokens, autoContext, annotFinalPass,
+    clearMemoryOnQuit, ghostMode, hideTrayIcon, memorySaveEnabled, contextMemoryEnabled, maxContextTokens, autoContext, annotFinalPass,
     audioMode, dismissOnDoubleClick, webSearch, workspace, userProfile,
     personalizePrompts, bridgeKeyDraft, bridgeKeyCleared, currentSerial, onSaved, initial,
   ]);
@@ -1194,7 +1194,7 @@ export function SettingsPanel({ initial, onClose, onSaved, openTab }: Props) {
                 <Separator className="my-2" />
 
                 <ToggleRow label={t('general.ghostMode')} hint={t('general.ghostModeHint')} checked={ghostMode} onChange={setGhostMode} />
-                <ToggleRow label={t('general.ghostHideTaskbar')} hint={t('general.ghostHideTaskbarHint')} checked={ghostHideTaskbar} onChange={setGhostHideTaskbar} />
+                <ToggleRow label={t('general.hideTrayIcon')} hint={t('general.hideTrayIconHint')} checked={hideTrayIcon} onChange={setHideTrayIcon} />
 
                 <Separator className="my-2" />
 

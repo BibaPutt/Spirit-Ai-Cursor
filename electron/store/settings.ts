@@ -864,7 +864,7 @@ export function getSettings(): Settings {
     notificationsEnabled: store.get('notificationsEnabled') ?? true,
     clearMemoryOnQuit: store.get('clearMemoryOnQuit') ?? false,
     ghostMode: store.get('ghostMode') ?? true,
-    ghostHideTaskbar: store.get('ghostHideTaskbar') ?? true,
+    hideTrayIcon: store.get('hideTrayIcon') ?? false,
     customShortcuts: (store.get('customShortcuts') as Record<string, string>) ?? {},
     permissionRules: readPermissionRules(),
   };
@@ -969,7 +969,7 @@ export function getSettingsLight(): Settings {
     notificationsEnabled: store.get('notificationsEnabled') ?? true,
     clearMemoryOnQuit: store.get('clearMemoryOnQuit') ?? false,
     ghostMode: store.get('ghostMode') ?? true,
-    ghostHideTaskbar: store.get('ghostHideTaskbar') ?? true,
+    hideTrayIcon: store.get('hideTrayIcon') ?? false,
     customShortcuts: (store.get('customShortcuts') as Record<string, string>) ?? {},
     permissionRules: readPermissionRules(),
   };
@@ -1000,14 +1000,14 @@ export function getInputTuning(): InputTuning {
   };
 }
 
-// Plain-store reads for the ghost-mode startup path. No keychain, no memo,
+// Plain-store reads for the stealth startup path. No keychain, no memo,
 // safe to call before app.whenReady() and from the global-shortcut handler.
 export function getGhostMode(): boolean {
   return store.get('ghostMode') ?? true;
 }
 
-export function getGhostHideTaskbar(): boolean {
-  return store.get('ghostHideTaskbar') ?? true;
+export function getHideTrayIcon(): boolean {
+  return store.get('hideTrayIcon') ?? false;
 }
 
 // Backend-only: decrypt a single provider's API key on demand. Triggers
@@ -1322,8 +1322,8 @@ export function setSettings(patch: Partial<Settings>): Settings {
   if (typeof patch.ghostMode === 'boolean') {
     store.set('ghostMode', patch.ghostMode);
   }
-  if (typeof patch.ghostHideTaskbar === 'boolean') {
-    store.set('ghostHideTaskbar', patch.ghostHideTaskbar);
+  if (typeof patch.hideTrayIcon === 'boolean') {
+    store.set('hideTrayIcon', patch.hideTrayIcon);
   }
   if (patch.customShortcuts && typeof patch.customShortcuts === 'object') {
     store.set('customShortcuts', patch.customShortcuts);

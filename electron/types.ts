@@ -395,11 +395,11 @@ export type Settings = {
 
   // Ghost mode (stealth). When on, every Spirit window is excluded from
   // screen capture on Windows/macOS and the tray icon is hidden. Linux has
-  // no equivalent capture-exclusion API; tray/taskbar hiding still applies.
+  // no equivalent capture-exclusion API; the taskbar is always hidden.
   ghostMode: boolean;
-  // Sub-toggle: hide Spirit from the taskbar (Windows/Linux) and Dock
-  // (macOS). Only meaningful while ghostMode is on.
-  ghostHideTaskbar: boolean;
+  // Hide the tray icon even when ghost mode is off. Independent of ghost
+  // mode; keyboard shortcuts remain available.
+  hideTrayIcon: boolean;
 
   // User-defined keyboard shortcuts. Keys are action names, values are
   // Electron accelerator strings (e.g. "CommandOrControl+Shift+S").

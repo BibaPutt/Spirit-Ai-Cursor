@@ -15,10 +15,9 @@ const ENABLE_SANDBOX = app.isPackaged;
 
 const overlayWindows = new Map<number, BrowserWindow>();
 
-// Ghost-mode state. Defaults match the pre-ghost behavior (capture-protected
-// + hidden from the taskbar), and new overlays pick up the latest values.
+// Overlay window state. Ghost mode controls capture protection; overlays stay
+// out of the taskbar/Dock window list at all times.
 let contentProtectionEnabled = true;
-let skipTaskbarEnabled = true;
 
 // Reserve a tiny strip at the very bottom of the screen so an auto-hide
 // taskbar (Windows + most Linux DEs) can still detect the cursor and
@@ -46,7 +45,7 @@ export function createOverlayForDisplay(display: Display): BrowserWindow {
     closable: false,
     fullscreenable: false,
     icon: getAppIconPathSync() || undefined,
-    skipTaskbar: skipTaskbarEnabled,
+    skipTaskbar: true,
     // Always focusable so the DOM input inside the box can receive keyboard
     // focus. We used to flip this on/off per hover via setFocusable() — that
     // call repaints the macOS window frame and was a major contributor to
@@ -202,15 +201,6 @@ export function setContentProtectionEnabled(enabled: boolean): void {
   contentProtectionEnabled = enabled;
   for (const win of overlayWindows.values()) {
     if (!win.isDestroyed()) win.setContentProtection(enabled);
-  }
-}
-
-// Ghost mode sub-toggle: hide/show the overlay in the taskbar (Windows/Linux)
-// and the Dock's window list (macOS).
-export function setOverlaysSkipTaskbar(skip: boolean): void {
-  skipTaskbarEnabled = skip;
-  for (const win of overlayWindows.values()) {
-    if (!win.isDestroyed()) win.setSkipTaskbar(skip);
   }
 }
 

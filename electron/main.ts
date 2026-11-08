@@ -10,7 +10,6 @@ import {
   destroyAllOverlays,
   restoreOverlaysAfterWake,
   setContentProtectionEnabled,
-  setOverlaysSkipTaskbar,
 } from './windows/overlay';
 import { startGlobalHook, stopGlobalHook, isGlobalHookStarted } from './input/global-hook';
 import { killStaleDriverProcesses } from './input/cua-driver-client';
@@ -49,8 +48,8 @@ import { getAppIconPath } from './tray/icon';
 import { destroyAboutWindow } from './windows/about';
 import { destroyLegalWindow } from './windows/legal';
 import {
-  getGhostHideTaskbar,
   getGhostMode,
+  getHideTrayIcon,
   getSettings,
   runProviderHealthProbe,
   setSettings,
@@ -351,38 +350,43 @@ function startResourceDebugLogger(): void {
   app.on('before-quit', () => clearInterval(interval));
 }
 
-function applyGhostMode(enabled: boolean, hideTaskbar: boolean): void {
+function applyGhostMode(enabled: boolean): void {
   setContentProtectionEnabled(enabled);
-  setOverlaysSkipTaskbar(enabled && hideTaskbar);
-  if (process.platform === 'darwin' && app.dock) {
-    if (enabled && hideTaskbar) app.dock.hide();
-    else app.dock.show();
-  }
+}
+
+function syncTrayVisibility(): void {
+  // Ghost mode and the tray icon are independent stealth controls: the
+  // explicit "hide tray icon" setting always wins, so toggling it off shows
+  // the tray instantly even while ghost mode is active.
+  if (getHideTrayIcon()) destroyTray();
+  else void createTray();
+}
+
+function applyStealthSettings(): void {
+  applyGhostMode(getGhostMode());
+  syncTrayVisibility();
 }
 
 function startMainApp(): void {
-  const ghost = getGhostMode();
-  applyGhostMode(ghost, getGhostHideTaskbar());
+  applyGhostMode(getGhostMode());
   createOverlayForAllDisplays();
-  if (!ghost) void createTray();
+  syncTrayVisibility();
   // Warm the persistent PowerShell workers (context + selection) + prime the
   // CDP-owner cache in the background so the first trigger doesn't pay the
   // cold process starts or the ~1s TCP probe.
   primeWindowsContextCache();
   primePowerShellWorkers();
 
-  // Ghost mode: the settings handler emits this after persisting; the
+  // Stealth settings: the settings handler emits this after persisting; the
   // global hotkey is the escape hatch when the tray icon is hidden.
-  app.on('spirit:ghost-mode' as never, (enabled: boolean) => {
-    applyGhostMode(enabled, getGhostHideTaskbar());
-    if (enabled) destroyTray();
-    else void createTray();
+  app.on('spirit:stealth-settings' as never, () => {
+    applyStealthSettings();
   });
   if (
     !globalShortcut.register('CommandOrControl+Shift+G', () => {
       const next = !getGhostMode();
       setSettings({ ghostMode: next });
-      app.emit('spirit:ghost-mode', next);
+      app.emit('spirit:stealth-settings');
     })
   ) {
     console.warn('[main] could not register CommandOrControl+Shift+G');

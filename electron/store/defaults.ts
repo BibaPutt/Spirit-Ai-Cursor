@@ -103,11 +103,11 @@ export type Schema = {
   clearMemoryOnQuit: boolean;
   // Ghost mode (stealth). When on, every Spirit window is excluded from
   // screen capture (Windows/macOS) and the tray icon is hidden. Linux has
-  // no equivalent capture-exclusion API; tray/taskbar hiding still applies.
+  // no equivalent capture-exclusion API; the taskbar is always hidden.
   ghostMode: boolean;
-  // Sub-toggle: hide Spirit from the taskbar (Windows/Linux) and the Dock
-  // (macOS). Only meaningful while ghostMode is on.
-  ghostHideTaskbar: boolean;
+  // Hide the tray icon even when ghost mode is off. Independent of ghost
+  // mode; keyboard shortcuts remain available.
+  hideTrayIcon: boolean;
   customShortcuts: Record<string, string>;
   // Enabled skill ids (Phase 5). null = never configured → the bundled
   // skills' defaultEnabled frontmatter decides. Skills are kept OUT of the
@@ -212,7 +212,7 @@ export const STORE_DEFAULTS: Schema = {
   notificationsEnabled: true,
   clearMemoryOnQuit: false,
   ghostMode: true,
-  ghostHideTaskbar: true,
+  hideTrayIcon: false,
   customShortcuts: {},
   enabledSkills: null,
   permissionRules: {},
