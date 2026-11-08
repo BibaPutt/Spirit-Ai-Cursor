@@ -1454,10 +1454,12 @@
 .fsence .mock {
   width: 100%;
   max-width: 430px;
+  min-width: 0;
 }
 
 .fsence__spirit {
   position: absolute;
+  min-width: 0;
   top: clamp(24px, 4vw, 48px);
   right: calc(-1 * clamp(20px, 3vw, 40px));
   z-index: 4;
@@ -1477,6 +1479,8 @@
     position: static;
     width: 100%;
     margin-top: 18px;
+    /* Leave room for the 30px-offset Bibata cursor when the box is flush left. */
+    padding-left: 30px;
   }
 }
 
@@ -1485,6 +1489,14 @@
     position: static;
     width: 100%;
     margin-top: 18px;
+    padding-left: 30px;
+    min-height: 460px;
+  }
+}
+
+@media (max-width: 760px) {
+  .scene__spirit {
+    min-height: 560px;
   }
 }
 
@@ -1498,16 +1510,26 @@
     flex-direction: column;
   }
 
-  .sbox__chips {
+  /* Same specificity as the is-rail rules above so the mobile intent
+     (app-sized chips in a wrapping row below the box) actually wins. */
+  .sbox.is-rail .sbox__chips {
     flex: 1 1 100%;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    align-items: flex-start;
     width: 100%;
-    padding-top: 0;
+    padding: 2px 4px 0 0;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
 
-  .sbox__chip {
+  .sbox.is-rail .sbox__chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sbox.is-rail .sbox__chip {
     width: auto;
+    flex: 0 0 auto;
   }
 }
 

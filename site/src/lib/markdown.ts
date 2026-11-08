@@ -63,11 +63,27 @@ export function markdownToHtml(src: string): string {
         rows.push(cells(lines[i]));
         i++;
       }
+      const label = (s: string) =>
+        s
+          .replace(/`([^`]*)`/g, '$1')
+          .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+          .replace(/[*_~]/g, '')
+          .replace(/"/g, '&quot;')
+          .trim();
       out.push(
         '<table><thead><tr>' +
           headers.map((c) => `<th>${inline(c)}</th>`).join('') +
           '</tr></thead><tbody>' +
-          rows.map((r) => '<tr>' + r.map((c) => `<td>${inline(c)}</td>`).join('') + '</tr>').join('') +
+          rows
+            .map(
+              (r) =>
+                '<tr>' +
+                r
+                  .map((c, idx) => `<td data-label="${label(headers[idx] ?? '')}"><span>${inline(c)}</span></td>`)
+                  .join('') +
+                '</tr>',
+            )
+            .join('') +
           '</tbody></table>',
       );
       continue;

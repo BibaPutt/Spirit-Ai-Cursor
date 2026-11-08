@@ -138,8 +138,14 @@ export function initScrollFX(): () => void {
       gsap.utils.toArray<HTMLElement>('[data-fx="slide"]').forEach((el) => {
         const from = (el.dataset.from as SlideFrom) || 'up';
         const trigger = el.closest<HTMLElement>('[data-fx="scene"]') ?? el;
+        // On phones a horizontal pre-reveal offset widens the layout viewport
+        // even while the element is still off-screen, which creates page-level
+        // horizontal scrolling. Slide up instead; the motion still reads.
+        const offset = window.matchMedia('(max-width: 980px)').matches
+          ? SLIDE_OFFSET.up
+          : SLIDE_OFFSET[from];
         gsap.from(el, {
-          ...SLIDE_OFFSET[from],
+          ...offset,
           autoAlpha: 0,
           duration: 0.95,
           delay: Number(el.dataset.delay ?? 0),

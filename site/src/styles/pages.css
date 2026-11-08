@@ -385,9 +385,11 @@ html[lang='ko'] .hero__title-line {
 
 @media (max-width: 760px) {
   .hscene__spirit {
-    top: 50%;
-    transform: translateY(-50%);
+    top: calc(50% - 140px);
     width: min(578px, calc(92% - 20px));
+    /* The static Bibata cursor sits 30px left of the box. Reserve that gutter
+       so the box stays left-anchored and the cursor is never clipped. */
+    padding-left: 30px;
   }
 
   .hscene__spirit .sbox {
@@ -1640,6 +1642,19 @@ html[lang='ko'] .hero__title-line {
     grid-template-columns: 1fr;
   }
 
+  .work__copies,
+  .work__copy,
+  .work__inline {
+    min-width: 0;
+  }
+
+  /* The inline demo lives in normal flow on phones, so reserve the tallest
+     phase. Otherwise every idle -> expanded -> rail cycle reflows the page. */
+  .work__inline .fsence {
+    min-height: 960px;
+    align-content: start;
+  }
+
   .work__rail {
     display: none;
   }
@@ -2313,4 +2328,92 @@ html[lang='ko'] .hero__title-line {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+/* ── Docs demos on small screens ─────────────────────────────────────────
+   The SpiritBox demo is in-flow, so its expand/collapse loop used to change
+   the page height every cycle. The box is now pinned to the stage's
+   top-left (like the real app: anchored at the cursor, grows down-right)
+   and the stage reserves the expanded height, so looping never reflows the
+   page. Inside the demo the box scales down with the viewport. */
+.docdemo__spirit { margin-right: auto; }
+
+.docdemo:has(.docdemo__spirit) {
+  min-height: 540px;
+  padding-left: max(42px, clamp(12px, 3vw, 32px));
+}
+
+@media (max-width: 760px) {
+  .docdemo:has(.docdemo__spirit) { min-height: 640px; padding: 20px 12px 20px 42px; }
+  .docdemo .sbox { --sbox-w: min(356px, calc(100vw - 72px)); }
+  .docdemo .sbox__floating { flex-wrap: wrap; row-gap: 4px; padding-inline: 0; }
+}
+
+@media (max-width: 480px) {
+  .docdemo:has(.docdemo__spirit) { min-height: 700px; }
+  .docdemo .sbox { --sbox-w: min(312px, calc(100vw - 56px)); }
+  .docdemo__window, .docdemo__approve { width: 100%; }
+}
+
+/* Mobile docs sidebar: the 24-item index turns every docs page into a wall
+   of links before the content. On phones the search palette IS the index. */
+@media (max-width: 760px) {
+  .docs-toc { flex-direction: column; }
+  .docs-toc a,
+  .docs-toc__group,
+  .docs-toc__line { display: none; }
+  .docsearch__trigger { margin-bottom: 18px; }
+
+  /* Width-heavy markdown tables become stacked label/value rows on phones.
+     Every cell keeps its header via data-label, so nothing scrolls sideways
+     and no word needs to be chopped to fit a fixed column. */
+  .rich-doc { min-width: 0; }
+  .rich-doc table,
+  .rich-doc tbody,
+  .rich-doc tr,
+  .rich-doc td { display: block; width: 100%; }
+  .rich-doc thead { display: none; }
+  .rich-doc tr {
+    padding: 10px 0 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .rich-doc tr:first-child { padding-top: 0; }
+  .rich-doc td {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+    padding: 3px 0;
+    border: 0;
+    overflow-wrap: anywhere;
+  }
+  .rich-doc td::before {
+    content: attr(data-label);
+    color: var(--mute);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .rich-doc td > span { min-width: 0; }
+  .rich-doc code,
+  .rich-doc a { overflow-wrap: anywhere; }
+
+  /* The palette is fixed-positioned inside the transformed reveal wrapper, so
+     anchor it to the physical viewport width instead of the docs column. */
+  .docsearch__overlay {
+    width: 100vw;
+    max-width: 100vw;
+    padding: 10vh 12px 12px;
+    box-sizing: border-box;
+  }
+  .docsearch__panel {
+    width: 100%;
+    max-height: min(70vh, 560px);
+  }
+  .docsearch__bar { padding: 12px 14px; gap: 10px; }
+  .docsearch__kbd,
+  .docsearch__hints { display: none; }
+  .docsearch__hit { padding: 9px 10px; }
 }
